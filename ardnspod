@@ -84,11 +84,11 @@ arDdnsInfo() {
     domainId=$(echo $domainId | sed 's/.*"id":"\([0-9]*\)".*/\1/')
 
     # Get Record ID
-    recordId=$(arDdnsApi "Record.List" "domain_id=$domainId&sub_domain=$2")
+    recordId=$(arDdnsApi "Record.List" "domain_id=$domainId&sub_domain=$2&record_type=A")
     recordId=$(echo $recordId | sed 's/.*"id":"\([0-9]*\)".*/\1/')
 
     # Last IP
-    recordIp=$(arDdnsApi "Record.Info" "domain_id=$domainId&record_id=$recordId")
+    recordIp=$(arDdnsApi "Record.Info" "domain_id=$domainId&record_id=$recordId&record_type=A")
     recordIp=$(echo $recordIp | sed 's/.*,"value":"\([0-9\.]*\)".*/\1/')
 
     # Output IP
@@ -123,7 +123,7 @@ arDdnsUpdate() {
     domainId=$(echo $domainId | sed 's/.*"id":"\([0-9]*\)".*/\1/')
 
     # Get Record ID
-    recordId=$(arDdnsApi "Record.List" "domain_id=$domainId&sub_domain=$2")
+    recordId=$(arDdnsApi "Record.List" "domain_id=$domainId&sub_domain=$2&record_type=A")
     recordId=$(echo $recordId | sed 's/.*"id":"\([0-9]*\)".*/\1/')
 
     # Update IP
